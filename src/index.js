@@ -6,6 +6,7 @@ import AlbumFeature from './features/Album'
 import TodoFeature from './features/Todo'
 import DetailPage from './features/Todo/pages/DetailPage'
 import ListPage from './features/Todo/pages/ListPage'
+import Option from './features/Todo/pages/Option'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
 
@@ -17,6 +18,8 @@ root.render(
         <Route path="/" element={<App />}>
           <Route path="albums" element={<AlbumFeature />} />
           <Route path="todos" element={<TodoFeature />}>
+            <Route index element={<Option />} />
+
             <Route path="detail" element={<DetailPage />} />
             <Route path="list" element={<ListPage />} />
           </Route>

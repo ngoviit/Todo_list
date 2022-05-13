@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import TodoList from '../../components/TodoList'
 import queryString from 'query-string'
 import { useLocation, useNavigate } from 'react-router-dom'
+import TodoForm from '../../components/TodoForm'
 function ListPage(props) {
   const initTodoList = [
     {
@@ -66,8 +67,22 @@ function ListPage(props) {
       todo => filterStatus === 'all' || filterStatus === todo.status
     )
   }, [todoList, filterStatus])
+
+  const handleTodoFormSubmit = values => {
+    console.log('form submit', values)
+    const newTodo = {
+      id: todoList.length + 1,
+      title: values.title,
+      status: 'new',
+    }
+    const newTodoList = [...todoList, newTodo]
+    setTodolist(newTodoList)
+  }
+
   return (
     <div>
+      <h3>What todo</h3>
+      <TodoForm onSubmit={handleTodoFormSubmit}></TodoForm>
       <h3>Todo List</h3>
       <TodoList
         todoList={renderTodoList}

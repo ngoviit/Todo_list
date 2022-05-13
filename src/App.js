@@ -5,8 +5,15 @@ import TodoFeature from './features/Todo'
 import AlbumFeature from './features/Album'
 
 import './App.css'
+import categoryApi from './api/categoryApi'
 
 function App() {
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const categoryList = await categoryApi.getAll()
+    }
+    fetchProduct()
+  }, [])
   const todoLists = [
     { id: 1, title: 'I love Easy Frontend! 😍 ' },
     { id: 2, title: 'We love Easy Frontend! 🥰 ' },

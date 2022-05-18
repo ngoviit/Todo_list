@@ -1,13 +1,14 @@
 import axios from 'axios'
+
 const axiosClient = axios.create({
-  baseURL: 'https://js-post-api.herokuapp.com/api/',
+  baseURL: 'https://api.ezfrontend.com/',
   headers: {
     'Content-Type': 'application/json',
   },
 })
-
+// interceptors
 // Add a request interceptor
-axios.interceptors.request.use(
+axiosClient.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     return config
@@ -19,7 +20,7 @@ axios.interceptors.request.use(
 )
 
 // Add a response interceptor
-axios.interceptors.response.use(
+axiosClient.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
@@ -28,6 +29,19 @@ axios.interceptors.response.use(
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
+    console.log('lỗi nè', error.response)
+    const { config, status, data } = error.response
+    const URLs = ['/auth/local/register', '/auth/local']
+    if (URLs.includes(config.url) && status === 400) {
+      // lấy về mảng data
+      const errorList = data.data || []
+      // lấy về dối tượng trong mảng errorList
+      const firstError = errorList.length > 0 ? errorList[0] : {}
+      // lấy ra mảng trong đối tượng firstError
+      const messageList = firstError.messages || []
+      const firstMessage = messageList.length > 0 ? messageList[0] : {}
+      throw new Error(firstMessage.message)
+    }
     return Promise.reject(error)
   }
 )

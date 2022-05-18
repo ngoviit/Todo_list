@@ -1,11 +1,10 @@
-import queryString from 'query-string'
+import { Button } from '@mui/material'
+import Header from 'components/Header'
+import { useSnackbar } from 'notistack'
 import { useEffect, useState } from 'react'
-import { Route, Routes, Link, Navigate, Outlet } from 'react-router-dom'
-import TodoFeature from './features/Todo'
-import AlbumFeature from './features/Album'
-
-import './App.css'
+import { Outlet } from 'react-router-dom'
 import categoryApi from './api/categoryApi'
+import './App.css'
 
 function App() {
   useEffect(() => {
@@ -91,13 +90,8 @@ function App() {
 
   return (
     <div>
+      <Header></Header>
       <h1>Home Page</h1>
-      <p>
-        <Link to="/todos">Todos</Link>
-      </p>
-      <p>
-        <Link to="/albums">Albums</Link>
-      </p>
 
       <Outlet></Outlet>
 

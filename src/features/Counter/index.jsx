@@ -25,6 +25,7 @@ function CounterFeatured(props) {
 
   const handleIncreaseClick = () => {
     const action = increase() //action creator
+    console.log(action)
     dispatch(action)
   }
 

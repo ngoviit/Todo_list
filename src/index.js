@@ -14,7 +14,8 @@ import reportWebVitals from './reportWebVitals'
 import CounterFeatured from './features/Counter'
 import Header from 'components/Header'
 import { SnackbarProvider } from 'notistack'
-
+import ProductFeatured from 'features/Product'
+import ListPageProduct from 'features/Product/pages/ListPage'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
@@ -30,6 +31,9 @@ root.render(
 
                 <Route path="detail" element={<DetailPage />} />
                 <Route path="list" element={<ListPage />} />
+              </Route>
+              <Route path="product" element={<ProductFeatured />}>
+                <Route index element={<ListPageProduct />} />
               </Route>
               <Route path="home" element={<Navigate replace to="/" />} />
             </Route>

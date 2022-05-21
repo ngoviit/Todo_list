@@ -1,18 +1,15 @@
-import { Button } from '@mui/material'
 import Header from 'components/Header'
-import { useSnackbar } from 'notistack'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import categoryApi from './api/categoryApi'
 import './App.css'
 
 function App() {
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const categoryList = await categoryApi.getAll()
-    }
-    fetchProduct()
-  }, [])
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     const categoryList = await categoryApi.getAll()
+  //   }
+  //   fetchProduct()
+  // }, [])
   const todoLists = [
     { id: 1, title: 'I love Easy Frontend! 😍 ' },
     { id: 2, title: 'We love Easy Frontend! 🥰 ' },
@@ -91,7 +88,6 @@ function App() {
   return (
     <div>
       <Header></Header>
-      <h1>Home Page</h1>
 
       <Outlet></Outlet>
 
